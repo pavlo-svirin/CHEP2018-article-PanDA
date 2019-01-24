@@ -1,0 +1,41 @@
+// PanDA-CHEP-article
+digraph {
+	graph [bgcolor=transparent fontcolor="#333355" fontname=Courier fontsize=16 label="" rankdir=BT splines=ortho]
+	node [color="#A0A0A0" fillcolor="#fcf594" fontcolor="#333355" fontname=Courier fontsize=14 shape=box style="filled,rounded"]
+	edge [arrowhead=normal color="#cc9900" dir=forward fontcolor="#333355" fontname=Courier fontsize=12 style=bold]
+	"5b0f944cfe2fea317b5f30373bb02443a6ea0166" [label=<5b0f94:<B>Added number of jobs for ATLAS on Titan</B><BR/> Pavlo Svirin 2018-12-02 21:02:18>]
+	"60fee9b58eb3b918161bf30f0e1c2ea553995bf8" [label=<60fee9:<B>Editing and iteration</B><BR/> mturilli 2018-12-02 16:02:08>]
+	"1426811285a862e1e37ab110b2de96c5f86b8583" [label=<142681:<B>Added abstract, fixed some symbols</B><BR/> psvirin 2018-11-29 02:38:59>]
+	"62b945102546475fa7111b72936a8947d015a1ba" [label=<62b945:<B>Add radical figures, add references, scattered editing</B><BR/> mturilli 2018-11-29 13:27:43>]
+	"6e1b0b067bd45829b95cf92a47b560f39b26bcff" [label=<6e1b0b:<B>Added harvester-related images</B><BR/> psvirin 2018-11-30 03:23:14>]
+	fccb9301dae874526e72f98f9865750c5e758f82 [label=<fccb93:<B>Highlighted some fragments which have to be fixed</B><BR/> psvirin 2018-11-29 17:27:27>]
+	a4a8d3dadf2d149628ddbb0ee93880e935aba212 [label=<a4a8d3:<B>Added images into tex file</B><BR/> psvirin 2018-11-30 03:39:10>]
+	"4b6bba324604b184fcc5cd14cf369dba5b39f753" [label=<4b6bba:<B>Added initial sections</B><BR/> psvirin 2018-11-29 02:25:37>]
+	dd5f90fa742fa1a5ac53aebd91f204ff9d9d3e3f [label=<dd5f90:<B>Added reference to Harvester</B><BR/> psvirin 2018-11-30 03:50:03>]
+	edc756f08ddde465fb340996718c4b9dafbf9527 [label=<edc756:<B>Add style for bibtex</B><BR/> mturilli 2018-12-02 12:10:05>]
+	cee6e2e65d3a95b920dc515f09a32fd14948337a [label=<cee6e2:<B>Added style file</B><BR/> psvirin 2018-11-29 15:56:34>]
+	"8039407b436b543fd4c6fa77ddb43c36e3814942" [label=<803940:<B>Added reference to molecular dynamics and inserted "showbf" mention</B><BR/> psvirin 2018-11-30 03:29:22>]
+	"10f4b6c346f0ec5689bf2c68482f83292cb37f67" [label=<10f4b6:<B>Merge branch 'master' of github.com:ATLAS-Titan/NGE-Harvester-paper</B><BR/> mturilli 2018-12-02 12:10:09>]
+	"8db03b161412bec13441bb05f56438a6450a167f" [label=<8db03b:<B>Initial commit</B><BR/> Matteo Turilli 2018-11-28 22:05:55>]
+	"refs/remotes/origin/master" [label=<<B>HEAD<BR/>origin/master</B>> fillcolor="#C7FFC7"]
+	"refs/remotes/origin/HEAD" [label=<<B>HEAD<BR/>origin/HEAD</B>> fillcolor="#C7FFC7"]
+	"refs/heads/master" [label=<<B>HEAD<BR/>master</B>> fillcolor="#C7FFC7"]
+{rank = same; "refs/remotes/origin/master"; "refs/remotes/origin/HEAD"; "refs/heads/master";}
+	"8db03b161412bec13441bb05f56438a6450a167f" -> "4b6bba324604b184fcc5cd14cf369dba5b39f753"
+	"5b0f944cfe2fea317b5f30373bb02443a6ea0166" -> "refs/remotes/origin/master" [dir=back]
+	"1426811285a862e1e37ab110b2de96c5f86b8583" -> "62b945102546475fa7111b72936a8947d015a1ba"
+	fccb9301dae874526e72f98f9865750c5e758f82 -> "6e1b0b067bd45829b95cf92a47b560f39b26bcff"
+	cee6e2e65d3a95b920dc515f09a32fd14948337a -> fccb9301dae874526e72f98f9865750c5e758f82
+	"6e1b0b067bd45829b95cf92a47b560f39b26bcff" -> "8039407b436b543fd4c6fa77ddb43c36e3814942"
+	"8039407b436b543fd4c6fa77ddb43c36e3814942" -> a4a8d3dadf2d149628ddbb0ee93880e935aba212
+	"62b945102546475fa7111b72936a8947d015a1ba" -> edc756f08ddde465fb340996718c4b9dafbf9527
+	dd5f90fa742fa1a5ac53aebd91f204ff9d9d3e3f -> "10f4b6c346f0ec5689bf2c68482f83292cb37f67"
+	"60fee9b58eb3b918161bf30f0e1c2ea553995bf8" -> "5b0f944cfe2fea317b5f30373bb02443a6ea0166"
+	"10f4b6c346f0ec5689bf2c68482f83292cb37f67" -> "60fee9b58eb3b918161bf30f0e1c2ea553995bf8"
+	"5b0f944cfe2fea317b5f30373bb02443a6ea0166" -> "refs/remotes/origin/HEAD" [dir=back]
+	"4b6bba324604b184fcc5cd14cf369dba5b39f753" -> "1426811285a862e1e37ab110b2de96c5f86b8583"
+	"62b945102546475fa7111b72936a8947d015a1ba" -> cee6e2e65d3a95b920dc515f09a32fd14948337a
+	"5b0f944cfe2fea317b5f30373bb02443a6ea0166" -> "refs/heads/master" [dir=back]
+	edc756f08ddde465fb340996718c4b9dafbf9527 -> "10f4b6c346f0ec5689bf2c68482f83292cb37f67"
+	a4a8d3dadf2d149628ddbb0ee93880e935aba212 -> dd5f90fa742fa1a5ac53aebd91f204ff9d9d3e3f
+}
