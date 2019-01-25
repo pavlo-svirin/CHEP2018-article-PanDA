@@ -8,32 +8,52 @@
 
 \begin{document}
 
-\title{PanDA and RADICAL-Pilot Integration: Enabling the Pilot Paradigm on HPC Resources}
+\title{BigPanDA: PanDA Workload Management System And Its Applications beyond ATLAS}
+
+%\author{
+%  \firstname{Andre} \lastname{Merzky}\inst{2} \and
+%  \firstname{Pavlo} \lastname{Svirin}\inst{1} \and
+%  \firstname{Matteo} \lastname{Turilli}\inst{2}
+%}
+
 
 \author{
-  \firstname{Andre} \lastname{Merzky}\inst{2} \and
-  \firstname{Pavlo} \lastname{Svirin}\inst{1} \and
-  \firstname{Matteo} \lastname{Turilli}\inst{2}
+%P. Svirin1, K. De2, A. Forti3, A. Klimentov1, R. Larsen1, P. Love4, T. Maeno1, R. Mashinistov1, S. Mukherjee1, A. Nomerotski1, D. Oleynik2, S. Panitkin1, H. Park1,5, E. Sheldon1, A. Slosar1, J. Wells6 and T. Wenaus1
+\firstname{Pavlo} \lastname{Svirin}\inst{1}
+\firstname{Kaushik} \lastname{De}\inst{2}
+\firstname{Alessandra} \lastname{Forti}\inst{3}
+\firstname{Alexei} \lastname{Klimentov}\inst{1}
+\firstname{Rasmus} \lastname{Larsen}\inst{1}
+\firstname{Peter} \lastname{Love}\inst{4}
+\firstname{Tadashi} \lastname{Maeno}\inst{1}
+\firstname{Ruslan} \lastname{Mashinistov}\inst{1}
+\firstname{Swagato} \lastname{Mukherjee}\inst{1}
+\firstname{Andrei} \lastname{Nomerotski}\inst{1}
+\firstname{Danila} \lastname{Oleynik}\inst{2}
+\firstname{Sergey} \lastname{Panitkin}\inst{1}
+\firstname{Heyun} \lastname{Park,}\inst{1}{5}
+\firstname{Erin} \lastname{Sheldon}\inst{1}
+\firstname{Anze} \lastname{Slosar}\inst{1}
+\firstname{Jack} \lastname{Wells }\inst{6}
+\firstname{Torre} \lastname{Wenaus}\inst{1}
+
+%  \firstname{Andre} \lastname{Merzky}\inst{2} \and
+%  \firstname{Pavlo} \lastname{Svirin}\inst{1} \and
+%  \firstname{Matteo} \lastname{Turilli}\inst{2}
 }
 
 \institute{Brookhaven National Laboratory \and
-           Rutgers University 
+Brookhaven National Laboratory (BNL), Upton, NY USA \and 
+University of Texas at Arlington (UTA), Arlington, TX USA \and 
+School of Physics and Astronomy, University of Manchester, Manchester, United Kingdom		 	 	  \and 
+Physics Department, Lancaster University, Lancaster, United Kingdom \and 
+Stony Brook University (SBU), Stony Brook, NY USA  \and 
+Oak Ridge National Laboratory (ORNL), Oak Ridge, TN USA 
 }
 
-\abstract{PanDA executes millions of ATLAS jobs a month on Grid systems with
-more than 300,000 cores. Currently, PanDA is compatible only with few HPC
-resources due to different edge services and operational policies; does not
-implement the pilot paradigm on HPC; and does not dynamically optimize
-resource allocation among queues. We integrated the PanDA Harvester service
-and the RADICAL-Pilot (RP) system to overcome these disadvantages and enable
-the execution of ATLAS, Molecular Dynamics and other workloads on HPC
-resources. Harvester is a commonality layer which brings coherence to diverse
-HPC systems, providing integration with PanDA workloads at job and event
-level. RP is a pilot system capable of executing short/long-running
-single/many-cores tasks on diverse HPC machines, supporting CPUs, GPUs, and
-multiple MPI implementations. We integrated Harvester and RP on Titan at
-ORNL, prototyping a Next Generation Executor (NGE) to expose RP capabilities
-and manage the execution of PanDA workloads.}
+\abstract{Modern experiments collect peta-scale volumes of data and utilize vast, geographically distributed computing infrastructure that serves thousands of scientists around the world. Requirements for rapid, near real-time data processing, fast analysis cycles and need to run massive detector simulations to support data analysis pose special premium on efficient use of available computational resources.
+A sophisticated Workload Management System (WMS)  is needed to coordinate the distribution and processing of data and jobs in such environment. The ATLAS experiment at CERN uses PanDA (Production and Data Analysis) Workload Management System for managing the workflow for all data processing on over 150 data centers. While PanDA currently uses more than 250,000 cores with a peak performance of 0.3 petaFLOPS, it runs around 2 million jobs per day on hundreds of Grid sites and serving thousands of ATLAS users. In 2017 about 1.5 exabytes of data were processed with PanDA.
+In 2012 BigPanDA project project was started with aim to introduce new types of computing resources into ATLAS computing infrastructure, but also to offering PanDA features to different data-intensive applications for projects and experiments outside of ATLAS and High-Energy and Nuclear Physics. In this article we will present accomplishments and discuss possible directions for future work.}
 
 \maketitle
 
