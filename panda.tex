@@ -8,7 +8,7 @@
 
 \begin{document}
 
-\title{BigPanDA: PanDA Workload Management System And Its Applications beyond ATLAS}
+\title{BigPanDA: PanDA Workload Management System and its Applications beyond ATLAS}
 
 %\author{
 %  \firstname{Andre} \lastname{Merzky}\inst{2} \and
@@ -88,14 +88,15 @@ Since 2015 the BigPanDA project evolved into the  BigPanDA++ as the collaboratio
 
 % ---------------------------------------------------------------------------
 \section{PanDA outside ATLAS and CERN: instances at OLCF and EC2 and user environment}
+
 \subsection{PanDA Server instances in EC2 Amazon Cloud and OLCF}
 
 
 ATLAS PanDA Server depends on Oracle database backend, which is a proprietary product. In order to meet licensing requirements, a version of PanDA Server has been developed to run with MySQL database, an open-source product published under GPLv2 license.  We have ported database description to MySQL excluding ATLAS-specific stored procedures. PanDA Monitor has also been tested for operability with MySQL.
 
-In order to run payloads for non-ATLAS experiments a VO-independent instance of MySQL-based PanDA Server has been deployed in Amazon EC2.  PanDA Monitor was also configured to display job information for this instance, as well as AutoPilotFactory~\cite{PanDAPilotSubmission} which submits pilots into Grid environment. As of today, there are 36 computing element endpoints configured with this instance of AutoPilotFactory. This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester instances deployed on the front nodes of these resources. Currently this instance server payloads for such experiments and projects like LSST/DESC and LQCD.
+In order to run payloads for non-ATLAS experiments a dedicated instance of MySQL-based PanDA Server has been deployed in Amazon EC2.  PanDA Monitor was also configured to display job information for this instance, as well as AutoPilot~\cite{PanDAPilotSubmission} which submits pilots into Grid environment. As of today, there are 36 computing element endpoints configured with this instance of AutoPilot. This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester~\ref{section_harvester} instances deployed on the front nodes of these resources. Currently this instance server payloads for such experiments and projects like LSST/DESC~\ref{section_lsst_desc} and LQCD~\ref{section_lqcd}.
 
-Another VO-independent PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM, Computational Biology, IceCube and Molecular Dynamics.
+Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM~\ref{section_nedm}, Computational Biology~\ref{section_biology}, IceCube~\ref{section_icecube} and Molecular Dynamics~\ref{section_moldyn}.
 To isolate the workflows of different groups and experiments, the dedicated queues were defined for both PanDA Server instances. Presumably that on next steps we will provide the security mechanisms that will provide the grants to each queue only for dedicated users. Also, the PanDA provides the tools to customize environment variables, system settings and workflow algorithms for different user groups. Also, this split of the different groups workflows on the level of PanDA queues simplifies jobs monitoring via the web-based PanDA tool. 
 
 
@@ -106,15 +107,15 @@ To isolate the workflows of different groups and experiments, the dedicated queu
   \label{fig:panda-OLCF}
 \end{figure}
 
-\subsection{From Pilot to Harvester}
+\subsection{From Pilot to Harvester} \label{section_harvester}
 
 Pilot-based architecture~\cite{Nilsson_2008} allows PanDA to integrate the wide diversity of the computing architectures like Grid,  HPCs and Clouds. However, for correct operation pilot requires outbound network connection from worker nodes, which might be absent on worker nodes of HPCs, like Titan. In this case a persistent edge-service has to be used to submit jobs to local batch system.
 
-Harvester~\cite{Harvester} is a resource-facing service between PanDA server and collection of workers on a compute site. It is intended to operate as a universal edge service in PanDA, capable of working with different types of computing resources -- Grid sites, clouds and supercomputers. Worker is a generalization of a pilot concept and can be, depending on a resource and workflow, a pilot, an MPI job, or a virtual machine. Harvester has modular multi-threaded design to support heterogeneous resources and to accommodate for special workflow requirements.
+Harvester~\cite{Megino_2017} is a resource-facing service between PanDA server and collection of workers on a compute site. It is intended to operate as a universal edge service in PanDA, capable of working with different types of computing resources -- Grid sites, clouds and supercomputers. Worker is a generalization of a pilot concept and can be, depending on a resource and workflow, a pilot, an MPI job, or a virtual machine. Harvester has modular multi-threaded design to support heterogeneous resources and to accommodate for special workflow requirements.
 
 Harvester provides for flexible scheduling of job execution and asynchronous data transfer to and from the controlled resource.
 
-We successfully used Harvester for integration of resources for various projects inside and outside of OLCF (Figure~\ref{panda-OLCF}). Harvester was used to run jobs on Titan for nEDM and LSST projects. It was used to integrate computational resources at BNL, JLab and NERSC for the Lattice QCD computations.
+We successfully used Harvester for integration of resources for various projects inside and outside of OLCF (Figure~\ref{panda-OLCF}). Harvester was used to run jobs on Titan for nEDM and LSST/DESC projects. It was used to integrate computational resources at BNL, JLab and NERSC for the Lattice QCD computations.
 
 \subsection{Client tools: job description and description of workflows}
 
@@ -127,24 +128,24 @@ For easier job management a set of client tools has been developed. It allows th
 %\section{RADICAL-Pilot and Next Generation Executor}\label{sec:rp}
 
 \section{Experiments And Projects}
-\subsection{PanDA for Computational Biology and Genomics}
+\subsection{PanDA for Computational Biology and Genomics} \label{section_biology}
 
-In collaboration with Center for Bioenergy Innovation at ORNL, the PanDA based workflow for epistasis research~\cite{GBOOST} was established. Epistasis is the phenomenon where the effect of one gene is dependent on the presence of one or more 'modifier genes', i.e. the genetic background. 
-The GBOOST application, a GPU-based tool for detecting gene-gene interactions in genome-wide case control studies, was used for initial tests. Input data were located in a set of eight input directories of 152 M each. Every PanDA job was configured to process single input directory in backfill mode on one node and walltime of 30 min. The output data of about 11M per job was located to the corresponding output dir.  
+In collaboration with Center for Bioenergy Innovation at ORNL, the PanDA based workflow for epistasis research was established. Epistasis is the phenomenon where the effect of one gene is dependent on the presence of one or more 'modifier genes', i.e. the genetic background. 
+The GBOOST~\cite{GBOOST} application, a GPU-based tool for detecting gene-gene interactions in genome-wide case control studies, was used for initial tests. Input data were located in a set of eight input directories of 152 M each. Every PanDA job was configured to process single input directory in backfill mode on one node and walltime of 30 min. The output data of about 11M per job was located to the corresponding output directory.  
 
-In 2019 we are going establish the workflow for larger scale computation runs on Titan and Summit.
+In 2019 we are going establish the workflow for larger scale computation runs on Titan and Summit~\cite{Summit}.
 
-\subsection{PanDA for Molecular Dynamics}
+\subsection{PanDA for Molecular Dynamics} \label{section_moldyn}
 
 In collaboration with department of Chemistry and Biochemistry at the University of Texas Arlington we implemented test to try out PanDA to support the Molecular Dynamics~\cite{3b6dad414e794d36954333f8f177f47c} study “Simulating Enzyme Catalysis, Conformational Change, and Ligand Binding/Release”. The CHARMM (Chemistry at HARvard Macromolecular Mechanics) application was chosen as a basic payload tool. CHARMM is a molecular simulation program with broad application to many-particle systems with a comprehensive set of energy functions, a variety of enhanced sampling methods, and support for multi-scale techniques including QM/MM, MM/CG, and a range of implicit solvent models. CHARMM primarily targets biological systems including peptides, proteins, prosthetic groups, small molecule ligands, nucleic acids, lipids, and carbohydrates, as they occur in solution, crystals, and membrane environments. CHARMM also finds broad applications for inorganic materials with applications in materials design. CHARMM design for hybrid MPI/OpenMP/GPU computing. For initial tests with PanDA we configured two types of jobs with different run time and output data volumes. These tests were successfully run on Titan using job submission via PanDA server at OLCF .
 
 
-\subsection{PanDA for IceCube}
+\subsection{PanDA for IceCube} \label{section_icecube}
 
 Together with experts from the IceCube~\cite{doi:10.1063/1.3480478} experiment we implemented the demonstrator for IceCube job submission to Titan using PanDA system . IceCube is a particle detector at the South Pole that records the interactions of a nearly massless subatomic particle called the neutrino. Demonstrator includes the use of NuGen package (a modified version of ANIS~\cite{GAZIZOV2005203} that works with IceCube software) - GPU application for atmospheric neutrinos are simulations packed in singularity container and remote stage-in/-out the data from GridFTP~\cite{GlobusGridFTP} storage with GSI authentication. Test jobs ran in one node mode with walltime of 120 minutes. After successful tests of this realistic IceCube jobs, we intended to perform full scale processing of 4500 files.
 
 
-\subsection{PanDA for BlueBrain}
+\subsection{PanDA for BlueBrain} \label{section_bluebrain}
 
 In 2017, a pilot project was started between BigPanDA and the Blue Brain Project (BBP)~\cite{Markram:BBP} of the Ecole Polytechnique Federale de Lausanne (EPFL) located in Lausanne, Switzerland. This proof of concept project is aimed at demonstrating the efficient application of the BigPanDA system to support the complex scientific workflow of the BBP which relies on using a mix of desktop, cluster and supercomputers to reconstruct and simulate accurate models of brain tissue.
 
@@ -153,14 +154,14 @@ In the first phase of this joint project we supported the execution of BBP softw
 In addition to standard PanDA components we developed the set of components to support BlueBrain user management, data flow, monitoring etc. Complete set of the tools provided within this project refers as PanDA portal and includes: Web-interface, Data Storage and Data Management System. 
 
 
-\subsection{PanDa for LSST/DESC}
+\subsection{PanDa for LSST/DESC} \label{section_lsst_desc}
 
 A goal of Large Synoptic Survey Telescope (LSST) project is to conduct a 10-year survey of the sky that is expected to deliver 200 petabytes of data after it begins full science operations in 2022. The project will address some of the most pressing questions about the structure and evolution of the universe and the objects in it. It will require a large amount of simulations, which model the atmosphere, optics and camera to understand the collected data. The LSST Dark Energy Science Collaboration (LSST/DESC) will prepare and perform a variety of cosmological analyses with the data received with LSST. This will allow provide the community with state of the art analysis tools which, in their turn, will help to expand the knowledge about dark energy~\cite{lsst-desc}.
 
-For running LSST/DESC simulations with the PanDA WMS we have established a distributed testbed infrastructure that employs the resources of several sites on GridPP and Open Science Grid as well as the Titan supercomputer at ORNL. In order to submit jobs to these sites we have used a PanDA server instance deployed on the Amazon AWS Cloud. 
+For running LSST/DESC simulations with the PanDA WMS we have established a distributed testbed infrastructure that employs the resources of several sites on GridPP~\cite{GridPP_Collaboration_2005} and Open Science Grid~\cite{Pordes_2007} as well as the Titan supercomputer at ORNL. In order to submit jobs to these sites we have used a PanDA server instance deployed on the Amazon AWS Cloud. 
 
 Current LSST/PanDA computing environment includes 2 sites in Open Science Grid (US), 8 sites in GridPP (UK) and LAPP Grid Site (France). Currently there are 36 Grid endpoints that support LSST/DESC payloads. During our last tests we managed reach around 3000 simultaneously running LSST/DESC jobs via PanDA infrastructure without any dedicated resources. Job duration was 4-24 hours with average duration around 7.5 hours.
-LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an edge service on NERSC Cori. ''2-point Statistics Analysis'' workflow (Figure~\ref{fig:lsst_desc_2pt_stats}) contains several steps where output from completed step is passed to the input of a next step. There were also intermediate steps that performed data preparation which had to be executed locally on a front node, main steps for the analysis were executed on worker nodes of Cori in Shifter containers prepared by BNL Astro group.
+LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an edge service on NERSC Cori~\cite{NERSC_Cori}. ''2-point Statistics Analysis'' workflow (Figure~\ref{fig:lsst_desc_2pt_stats}) contains several steps where output from completed step is passed to the input of a next step. There were also intermediate steps that performed data preparation which had to be executed locally on a front node, main steps for the analysis were executed on worker nodes of Cori in Shifter containers prepared by BNL Astro group.
 
 
 
@@ -172,7 +173,7 @@ LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an e
 \end{figure}
 
 
-\subsection{PanDA for Lattice QCD computations}
+\subsection{PanDA for Lattice QCD computations} \label{section_lqcd}
 
 Lattice QCD (LQCD) is a well-established non-perturbative approach to solving the quantum chromodynamics theory of quarks and gluons.  Current LQCD payloads can be characterized as massively parallel, occupying thousands of nodes on leadership-class supercomputers. 
 
@@ -198,11 +199,11 @@ In terms of preparation to future LQCD campaigns an instance of Harvester was su
 \end{figure}
 
 
-\subsection{PanDA for nEDM}
+\subsection{PanDA for nEDM} \label{section_nedm}
 
 Precision measurements of the properties of the neutron present an opportunity to search for violations of fundamental symmetries and to make critical tests of the validity of the Standard Model (SM) of electroweak (EW) interactions. These experiments have been pursued with great energy and interest since the discovery of neutron in 1932.  The goal of the nEDM~\cite{Lamoreaux_2009} experiment at the Fundamental Neutron Physics Beamline at the Spallation Neutron Source (Oak Ridge National Laboratory) is to further improve the precision of this measurement by another factor of 100.
 
-Current nEDM payloads run detector simulations using GEANT with walltime around 20 minutes. We have successfully tested nEDM payloads executed through Harvester instance deployed on a login node of Titan supercomputer. No specific data movement was required from nEDM; input and output data remain on Titan’s Lustre filesystem. nEDM team is planning to run their data challenges in 2019 through OLCF PanDA Server instance.
+Current nEDM payloads run detector simulations using GEANT4~\cite{AGOSTINELLI2003250} with walltime around 20 minutes. We have successfully tested nEDM payloads executed through Harvester instance deployed on a login node of Titan supercomputer. No specific data movement was required from nEDM; input and output data remain on Titan’s Lustre filesystem. nEDM team is planning to run their data challenges in 2019 through OLCF PanDA Server instance.
 
 
 % ---------------------------------------------------------------------------
@@ -212,7 +213,7 @@ In terms of BigPanDA project we are making research on how PanDA features can be
 The most remarkable achievements for now for BigPanDA project beyond ATLAS are the following:
 
 \begin{itemize}
-	\item we created a VO-independent version of PanDA Server, which does not 	depend on proprietary software
+	\item we created a version of PanDA Server, which does not 	depend on proprietary software
 	\item several PanDA Server instances were deployed to serve different non-ATLAS payloads
 	\item application from several projects (LSST/DESC, nEDM, BlueBrain, Molecular Dynamics, Computational Biology, LQCD) were executed via PanDA on various Grid and HPC resources
 	\item production campaign has been started for LQCD computations on BNL Institutional Cluster
@@ -226,9 +227,15 @@ The future goals for BigPanDA regarding non-ATLAS projects and experiments are:
 	\item to prepare for payloads and workflows that will be run on next-generation HPCs like Summit
 \end{itemize}
 
-\section{Acknowledgements}
+\bigskip
 
-This work was funded in part by the U.S. Department of Energy, Office of Science, High Energy Physics and Advanced Scientific Computing Research under Contracts DE-SC0008635, DE-SC0016280. We would like to acknowledge that this research used resources of the Oak Ridge Leadership Computing Facility at the Oak Ridge National Laboratory, which is supported by the Office of Science of the U.S. Department of Energy under Contract no. DE-AC05-00OR22725.
+%\section{Acknowledgements}
+
+%This work was funded in part by the U.S. Department of Energy, Office of Science, High Energy Physics and Advanced Scientific Computing Research under Contracts DE-SC0008635, DE-SC0016280. We would like to acknowledge that this research used resources of the Oak Ridge Leadership Computing Facility at the Oak Ridge National Laboratory, which is supported by the Office of Science of the U.S. Department of Energy under Contract no. DE-AC05-00OR22725.
+
+\begin{acknowledgement}
+	This work was funded in part by the U.S. Department of Energy, Office of Science, High Energy Physics and Advanced Scientific Computing Research under Contracts DE-SC0008635, DE-SC0016280. We would like to acknowledge that this research used resources of the Oak Ridge Leadership Computing Facility at the Oak Ridge National Laboratory, which is supported by the Office of Science of the U.S. Department of Energy under Contract no. DE-AC05-00OR22725.
+\end{acknowledgement}
 
 
 % ---------------------------------------------------------------------------
