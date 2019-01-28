@@ -130,14 +130,18 @@ For easier job management a set of client tools has been developed. It allows th
 \section{Experiments And Projects}
 \subsection{PanDA for Computational Biology and Genomics} \label{section_biology}
 
-In collaboration with Center for Bioenergy Innovation at ORNL, the PanDA based workflow for epistasis research was established. Epistasis is the phenomenon where the effect of one gene is dependent on the presence of one or more 'modifier genes', i.e. the genetic background. 
+In collaboration with Center for Bioenergy Innovation at ORNL, the PanDA based workflow for epistasis research~\cite{Gros277} was established.
+
+% Epistasis is the phenomenon where the effect of one gene is dependent on the presence of one or more 'modifier genes', i.e. the genetic background. 
+
 The GBOOST~\cite{GBOOST} application, a GPU-based tool for detecting gene-gene interactions in genome-wide case control studies, was used for initial tests. Input data were located in a set of eight input directories of 152 M each. Every PanDA job was configured to process single input directory in backfill mode on one node and walltime of 30 min. The output data of about 11M per job was located to the corresponding output directory.  
 
 In 2019 we are going establish the workflow for larger scale computation runs on Titan and Summit~\cite{Summit}.
 
 \subsection{PanDA for Molecular Dynamics} \label{section_moldyn}
 
-In collaboration with department of Chemistry and Biochemistry at the University of Texas Arlington we implemented test to try out PanDA to support the Molecular Dynamics~\cite{3b6dad414e794d36954333f8f177f47c} study “Simulating Enzyme Catalysis, Conformational Change, and Ligand Binding/Release”. The CHARMM (Chemistry at HARvard Macromolecular Mechanics) application was chosen as a basic payload tool. CHARMM is a molecular simulation program with broad application to many-particle systems with a comprehensive set of energy functions, a variety of enhanced sampling methods, and support for multi-scale techniques including QM/MM, MM/CG, and a range of implicit solvent models. CHARMM primarily targets biological systems including peptides, proteins, prosthetic groups, small molecule ligands, nucleic acids, lipids, and carbohydrates, as they occur in solution, crystals, and membrane environments. CHARMM also finds broad applications for inorganic materials with applications in materials design. CHARMM design for hybrid MPI/OpenMP/GPU computing. For initial tests with PanDA we configured two types of jobs with different run time and output data volumes. These tests were successfully run on Titan using job submission via PanDA server at OLCF .
+In collaboration with department of Chemistry and Biochemistry at the University of Texas Arlington we implemented test to try out PanDA to support the Molecular Dynamics~\cite{3b6dad414e794d36954333f8f177f47c} study ''Simulating Enzyme Catalysis, Conformational Change, and Ligand Binding/Release''. 
+The CHARMM (Chemistry at HARvard Macromolecular Mechanics) application was chosen as a basic payload tool. CHARMM is a molecular simulation program with broad application to many-particle systems with a comprehensive set of energy functions, a variety of enhanced sampling methods, and support for multi-scale techniques including QM/MM, MM/CG, and a range of implicit solvent models. CHARMM primarily targets biological systems including peptides, proteins, prosthetic groups, small molecule ligands, nucleic acids, lipids, and carbohydrates, as they occur in solution, crystals, and membrane environments. CHARMM also finds broad applications for inorganic materials with applications in materials design. CHARMM design for hybrid MPI/OpenMP/GPU computing. For initial tests with PanDA we configured two types of jobs with different run time and output data volumes. These tests were successfully run on Titan using job submission via PanDA server at OLCF .
 
 
 \subsection{PanDA for IceCube} \label{section_icecube}
@@ -167,7 +171,7 @@ LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an e
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.60\textwidth]{figures/LSST_2point_statistics.png}
+  \includegraphics[width=0.30\textwidth]{figures/LSST_2point_statistics.png}
   \caption{2-point Statistics Analysis workflow}
   \label{fig:lsst_desc_2pt_stats}
 \end{figure}
@@ -175,7 +179,10 @@ LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an e
 
 \subsection{PanDA for Lattice QCD computations} \label{section_lqcd}
 
-Lattice QCD (LQCD) is a well-established non-perturbative approach to solving the quantum chromodynamics theory of quarks and gluons.  Current LQCD payloads can be characterized as massively parallel, occupying thousands of nodes on leadership-class supercomputers. 
+%Lattice QCD (LQCD) is a well-established non-perturbative approach to solving the quantum chromodynamics theory of quarks and gluons.  
+Quantum chromodynamics (QCD) is the fundamental theory to describe the dynamics of quarks and gluons in hadrons.
+Lattice QCD (LQCD) simulations~\cite{LQCD_Matsufuru} have become a most powerful tool to analyze the nonperturbative nature of QCD.
+Current LQCD payloads can be characterized as massively parallel, occupying thousands of nodes on leadership-class supercomputers. 
 
 The computations typically proceed in two phases: in the first phase, one generates thousands of configurations of the strong force fields (gluons), colloquially referred to as gauge fields. This computation is a long-chain Monte Carlo process, requiring the focused power of leadership class computing facilities for extended periods. In the second phase, these configurations are analyzed on various HPC resources ~\cite{Babich:2010:PQL:1884643.1884695}.
 
