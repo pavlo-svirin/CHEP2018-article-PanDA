@@ -94,12 +94,20 @@ Since 2015 the BigPanDA project evolved into the  BigPanDA++ as the collaboratio
 \subsection{PanDA Server instances in EC2 Amazon Cloud and OLCF}
 
 
-ATLAS PanDA Server depends on Oracle database backend, which is a proprietary product. In order to meet licensing requirements, a version of PanDA Server has been developed to run with MySQL database, an open-source product published under GPLv2 license.  We have ported database description to MySQL excluding ATLAS-specific stored procedures. PanDA Monitor has also been tested for operability with MySQL.
+ATLAS PanDA Server depends on Oracle database backend, which is a proprietary product. In order to meet licensing requirements, a version of PanDA Server has been developed to run with MySQL database, an open-source product published under GPLv2 license.  
+We have ported database description to MySQL excluding ATLAS-specific stored procedures. PanDA Monitor has also been tested for operability with MySQL.
 
-In order to run payloads for non-ATLAS experiments a dedicated instance of MySQL-based PanDA Server has been deployed in Amazon EC2.  PanDA Monitor was also configured to display job information for this instance, as well as AutoPilot~\cite{PanDAPilotSubmission} which submits pilots into Grid environment. As of today, there are 36 computing element endpoints configured with this instance of AutoPilot. This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester~\ref{section_harvester} instances deployed on the front nodes of these resources. Currently this instance server payloads for such experiments and projects like LSST/DESC and LQCD mentioned in sections ~\ref{section_lsst_desc} and ~\ref{section_lqcd}.
+In order to run payloads for non-ATLAS experiments a dedicated instance of MySQL-based PanDA Server has been deployed in Amazon EC2.  
+PanDA Monitor was also configured to display job information for this instance, as well as AutoPilot~\cite{PanDAPilotSubmission} which submits pilots into Grid environment. 
+As of today, there are 36 computing element endpoints configured with this instance of AutoPilot. 
+This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester~\ref{section_harvester} instances deployed on the front nodes of these resources. 
+Currently this instance server payloads for such experiments and projects like LSST/DESC and LQCD mentioned in sections ~\ref{section_lsst_desc} and ~\ref{section_lqcd}.
 
 Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM~\ref{section_nedm}, Computational Biology~\ref{section_biology}, IceCube~\ref{section_icecube} and Molecular Dynamics~\ref{section_moldyn}.
-To isolate the workflows of different groups and experiments, the dedicated queues were defined for both PanDA Server instances. Presumably that on next steps we will provide the security mechanisms that will provide the grants to each queue only for dedicated users. Also, the PanDA provides the tools to customize environment variables, system settings and workflow algorithms for different user groups. Also, this split of the different groups workflows on the level of PanDA queues simplifies jobs monitoring via the web-based PanDA tool. 
+To isolate the workflows of different groups and experiments, the dedicated queues were defined for both PanDA Server instances. 
+Presumably that on next steps we will provide the security mechanisms that will provide the grants to each queue only for dedicated users. 
+Also, the PanDA provides the tools to customize environment variables, system settings and workflow algorithms for different user groups. 
+Also, this split of the different groups workflows on the level of PanDA queues simplifies jobs monitoring via the web-based PanDA tool. 
 
 
 \begin{figure}
@@ -145,7 +153,8 @@ In 2019 we are going establish the workflow for larger scale computation runs on
 In collaboration with department of Chemistry and Biochemistry at the University of Texas Arlington we implemented test to try out PanDA to support the Molecular Dynamics~\cite{3b6dad414e794d36954333f8f177f47c} study ''Simulating Enzyme Catalysis, Conformational Change, and Ligand Binding/Release''. 
 The CHARMM (Chemistry at HARvard Macromolecular Mechanics) application was chosen as a basic payload tool. 
 % CHARMM is a molecular simulation program with broad application to many-particle systems with a comprehensive set of energy functions, a variety of enhanced sampling methods, and support for multi-scale techniques including QM/MM, MM/CG, and a range of implicit solvent models. 
-CHARMM is a molecular simulation program which primarily targets biological systems including peptides, proteins, prosthetic groups, small molecule ligands, nucleic acids, lipids, and carbohydrates, as they occur in solution, crystals, and membrane environments, it is designed for hybrid MPI/OpenMP/GPU computing.
+%CHARMM is a molecular simulation program which primarily targets biological systems including peptides, proteins, prosthetic groups, small molecule ligands, nucleic acids, lipids, and carbohydrates, as they occur in solution, crystals, and membrane environments, it is designed for hybrid MPI/OpenMP/GPU computing.
+CHARMM is a molecular simulation program which primarily targets biological systems including peptides, proteins, prosthetic groups, and others; it is designed for hybrid MPI/OpenMP/GPU computing.
 % CHARMM also finds broad applications for inorganic materials with applications in materials design. 
 % CHARMM design for hybrid MPI/OpenMP/GPU computing. 
 For initial tests with PanDA we configured two types of jobs with different run time and output data volumes. 
@@ -168,18 +177,25 @@ In 2017, a pilot project was started between BigPanDA and the Blue Brain Project
 
 In the first phase of this joint project we supported the execution of BBP software on a variety of distributed computing systems powered by PanDA. 
 %The targeted systems for demonstration included: Intel x86-NVIDIA GPU based BBP clusters located in Geneva (47 TFlops) and Lugano (81 TFlops), BBP IBM BlueGene/Q supercomputer (0.78 PFLops and 65 TB of DRAM memory) located in Lugano, the Titan Supercomputer with peak theoretical performance 27 PFlops operated by the Oak Ridge Leadership Computing Facility (OLCF), and Cloud based resources such as Amazon Cloud.
-The targeted systems for demonstration included: Intel x86-NVIDIA GPU based BBP clusters located in Geneva and Lugano, BBP IBM BlueGene/Q supercomputer located in Lugano, the Titan Supercomputer at OLCF, and Cloud based resources such as Amazon Cloud.
+%The targeted systems for demonstration included: Intel x86-NVIDIA GPU based BBP clusters located in Geneva and Lugano, BBP IBM BlueGene/Q supercomputer located in Lugano, the Titan supercomputer at OLCF, and Cloud based resources such as Amazon Cloud.
+The targeted systems for demonstration included: Intel x86-NVIDIA GPU based BBP clusters located in Geneva and Lugano, BBP IBM BlueGene/Q supercomputer in Lugano, the Titan supercomputer, and Cloud based resources such as Amazon Cloud.
 
-In addition to standard PanDA components we developed the set of components to support BlueBrain user management, data flow, monitoring etc. Complete set of the tools provided within this project refers as PanDA portal and includes: Web-interface, Data Storage and Data Management System. 
+
+In addition to standard PanDA components we developed the set of components to support BlueBrain user management, data flow, monitoring etc. 
+Complete set of the tools provided within this project refers as PanDA portal and includes: Web-interface, Data Storage and Data Management System. 
 
 
 \subsection{PanDa for LSST/DESC} \label{section_lsst_desc}
 
-A goal of Large Synoptic Survey Telescope (LSST) project is to conduct a 10-year survey of the sky that is expected to deliver 200 petabytes of data after it begins full science operations in 2022. The project will address some of the most pressing questions about the structure and evolution of the universe and the objects in it. It will require a large amount of simulations, which model the atmosphere, optics and camera to understand the collected data. The LSST Dark Energy Science Collaboration (LSST/DESC) will prepare and perform a variety of cosmological analyses with the data received with LSST. This will allow provide the community with state of the art analysis tools which, in their turn, will help to expand the knowledge about dark energy~\cite{lsst-desc}.
+A goal of Large Synoptic Survey Telescope (LSST) project is to conduct a 10-year survey of the sky that is expected to deliver 200 petabytes of data after it begins full science operations in 2022. 
+The project will address some of the most pressing questions about the structure and evolution of the universe and the objects in it. 
+It will require a large amount of simulations, which model the atmosphere, optics and camera to understand the collected data. 
+The LSST Dark Energy Science Collaboration (LSST/DESC)~\cite{lsst-desc} will prepare and perform a variety of cosmological analyses with the data received with LSST. 
+This will allow provide the community with state of the art analysis tools which, in their turn, will help to expand the knowledge about dark energy.
 
-For running LSST/DESC simulations with the PanDA WMS we have established a distributed testbed infrastructure that employs the resources of several sites on GridPP~\cite{GridPP_Collaboration_2005} and Open Science Grid~\cite{Pordes_2007} as well as the Titan supercomputer at ORNL. In order to submit jobs to these sites we have used a PanDA server instance deployed on the Amazon AWS Cloud. 
-
-Current LSST/PanDA computing environment includes 2 sites in Open Science Grid (US), 8 sites in GridPP (UK) and LAPP Grid Site (France). Currently there are 36 Grid endpoints that support LSST/DESC payloads. During our last tests we managed reach around 3000 simultaneously running LSST/DESC jobs via PanDA infrastructure without any dedicated resources. 
+For running LSST/DESC simulations with the PanDA WMS we have established a distributed testbed infrastructure that employs the resources of several sites on GridPP~\cite{GridPP_Collaboration_2005} and Open Science Grid~\cite{Pordes_2007} as well as the Titan supercomputer. In order to submit jobs to these sites we have used a PanDA server instance deployed on the Amazon AWS Cloud. 
+Current LSST/PanDA computing environment includes 2 sites in Open Science Grid (US), 8 sites in GridPP (UK) and LAPP Grid Site (France). 
+Currently there are 36 Grid endpoints that support LSST/DESC payloads. During our last tests we managed reach around 3000 simultaneously running LSST/DESC jobs via PanDA infrastructure without any dedicated resources. 
 Job duration was 4-24 hours with average duration around 7.5 hours.
 LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an edge service on NERSC Cori~\cite{NERSC_Cori}. ''2-point Statistics Analysis'' workflow (Figure~\ref{fig:lsst_desc_2pt_stats}) contains several steps where output from completed step is passed to the input of a next step. There were also intermediate steps that performed data preparation which had to be executed locally on a front node, main steps for the analysis were executed on worker nodes of Cori in Shifter containers prepared by BNL Astro group.
 
@@ -203,8 +219,7 @@ Current LQCD payloads can be characterized as massively parallel, occupying thou
 
 The computations typically proceed in two phases: in the first phase, one generates thousands of configurations of the strong force fields (gluons), colloquially referred to as gauge fields. 
 %This computation is a long-chain Monte Carlo process, requiring the focused power of leadership class computing facilities for extended periods. In the second phase, these configurations are analyzed on various HPC resources~\cite{Babich:2010:PQL:1884643.1884695}.
-This computation is a long-chain Monte Carlo process, requiring the focused power of leadership class computing facilities for extended periods. In the second phase, these configurations are analyzed on various HPC resources~\cite{Babich:2011np}
-
+This computation is a long-chain Monte Carlo process, requiring the focused power of leadership class computing facilities for extended periods. In the second phase, these configurations are analyzed on various HPC resources~\cite{Babich:2011np}.
 Until a few years ago, the analysis phase would often account for a relatively small part of the cost of the overall calculation. In recent years, however, focus has turned to more challenging physical observables and new analysis. As a result, the relative costs have shifted to the point where analysis often requires an equal or greater amount of computation than gauge field generation.
 
 In 2017, as a part of SciDAC-4 funded project, a collaboration was formed between several US LQCD groups and BigPanDA team with the goal to adopt PanDA WMS for the needs of the SciDAC-4 LQCD computational program.
