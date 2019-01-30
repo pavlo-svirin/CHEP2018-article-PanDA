@@ -66,12 +66,13 @@ In 2012 BigPanDA project project was started with aim to introduce new types of 
 
 Production and Distributed Analysis Workload Management System (PanDA WMS) ~\cite{PanDA} is the system initially developed for ATLAS experiment~\cite{ATLAS_Collaboration_2008} and was designed as high-level intellectual layer on WLCG~\cite{doi:10.1146/annurev-nucl-102010-130059} grid-infrastructure. 
 %WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of the services which can be thematically grouped into 5 service groups: Access Services, Security Services, Information and Monitoring Services, Data Services and Job Management Services (Figure~\ref{fig:panda-arch}). 
-WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of services. (Figure~\ref{fig:panda-arch}). 
+WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of services. 
 
-At the same time parallely developed PanDA system allowed the efficient use of gLite infrastructure and provided a multiple benefits. Most significant features provided by PanDA are the following: 
+At the same time parallely developed PanDA system  allowed the efficient use of gLite infrastructure and provided a multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
+Most significant features provided by PanDA are the following: 
 
 \begin{itemize}
-	\item The implementation of the late-binding principle for the job payload with CPU slots using the Pilots component. Now the standard Grid-job became the carrier of the Pilot-job which in it’s order became responsible of the handling the Payload. 
+	\item The implementation of the late-binding principle for the job payload with CPU slots using the Pilots component. Now the standard Grid-job became the carrier of the Pilot-job which in it’s order became responsible of the handling  payloads. 
 	\item Brokerage of the jobs in PanDA implemented in highly sophisticated way taking into account many factors of the real ATLAS workflow and workload and integrating multiple components of the computing model. 
 	\item Monitoring of the PanDA system is also developed according to the daily necessities of the real users. Being the core component of the ATLAS production system PanDA confidently copes the needs of the experiment since the commissioning. 
 \end{itemize}
@@ -79,7 +80,8 @@ At the same time parallely developed PanDA system allowed the efficient use of g
 \begin{figure}
 	\centering
 	\includegraphics[width=0.90\textwidth]{figures/PanDA_architecture.png}
-	\caption{PanDA architecture.}
+%	\caption{PanDA architecture.}
+    \caption{The components of ATLAS distributed computing software: production management (), metadata and distributed data management (), workload management()}	
 	\label{fig:panda-arch}
 \end{figure}
 
@@ -103,7 +105,7 @@ As of today, there are 36 computing element endpoints configured with this insta
 This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester~\ref{section_harvester} instances deployed on the front nodes of these resources. 
 Currently this instance server payloads for such experiments and projects like LSST/DESC and LQCD mentioned in sections ~\ref{section_lsst_desc} and ~\ref{section_lqcd}.
 
-Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM~\ref{section_nedm}, Computational Biology~\ref{section_biology}, IceCube~\ref{section_icecube} and Molecular Dynamics~\ref{section_moldyn}.
+Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM( section~\ref{section_nedm}), Computational Biology (section~\ref{section_biology}), IceCube (section~\ref{section_icecube}) and Molecular Dynamics (section ~\ref{section_moldyn}).
 To isolate the workflows of different groups and experiments, the dedicated queues were defined for both PanDA Server instances. 
 Presumably that on next steps we will provide the security mechanisms that will provide the grants to each queue only for dedicated users. 
 Also, the PanDA provides the tools to customize environment variables, system settings and workflow algorithms for different user groups. 
@@ -113,7 +115,8 @@ Also, this split of the different groups workflows on the level of PanDA queues 
 \begin{figure}
   \centering
   \includegraphics[width=0.90\textwidth]{figures/Panda_at_OLCF.png}
-  \caption{Harvester architecture.}
+%  \caption{Harvester architecture.}
+  \caption{Harvester deployment on Titan and its interaction with external PanDA services and Titan's batch system}
   \label{fig:panda-OLCF}
 \end{figure}
 
@@ -125,7 +128,7 @@ Harvester~\cite{Megino_2017} is a resource-facing service between PanDA server a
 
 Harvester provides for flexible scheduling of job execution and asynchronous data transfer to and from the controlled resource.
 
-We successfully used Harvester for integration of resources for various projects inside and outside of OLCF (Figure~\ref{panda-OLCF}). Harvester was used to run jobs on Titan for nEDM and LSST/DESC projects. It was used to integrate computational resources at BNL, JLab and NERSC for the Lattice QCD computations.
+We successfully used Harvester for integration of resources for various projects inside and outside of OLCF (Figure~\ref{fig:panda-OLCF}). Harvester was used to run jobs on Titan for nEDM and LSST/DESC projects. It was used to integrate computational resources at BNL, JLab and NERSC for the Lattice QCD computations.
 
 \subsection{Client tools: job description and description of workflows}
 
