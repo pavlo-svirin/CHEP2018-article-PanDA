@@ -68,13 +68,31 @@ Production and Distributed Analysis Workload Management System (PanDA WMS) ~\cit
 %WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of the services which can be thematically grouped into 5 service groups: Access Services, Security Services, Information and Monitoring Services, Data Services and Job Management Services (Figure~\ref{fig:panda-arch}). 
 WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of services. 
 
-At the same time parallely developed PanDA system  allowed the efficient use of gLite infrastructure and provided a multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
-Most significant features provided by PanDA are the following: 
+At the same time parallely developed PanDA system  allowed the efficient use of gLite infrastructure and provided multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
+% for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
+% and provided multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
+The most significant features provided by PanDA are the following: 
 
 \begin{itemize}
-	\item The implementation of the late-binding principle for the job payload with CPU slots using the Pilots component. Now the standard Grid-job became the carrier of the Pilot-job which in it’s order became responsible of the handling  payloads. 
-	\item Brokerage of the jobs in PanDA implemented in highly sophisticated way taking into account many factors of the real ATLAS workflow and workload and integrating multiple components of the computing model. 
-	\item Monitoring of the PanDA system is also developed according to the daily necessities of the real users. Being the core component of the ATLAS production system PanDA confidently copes the needs of the experiment since the commissioning. 
+	\item A common layer over heterogeneous computing resources which hides the complexity of different computing resources and middlewares from users.
+	\item The implementation of the late-binding principle for the job payload with CPU slots using the Pilot component. This approach allows to prevent  latencies and failure modes in slot acquisition from impacting the jobs.
+	%Now the standard Grid-job became the carrier of the Pilot-job which in it’s order became responsible of the handling  payloads. 
+	\item PanDA's brokerage system takes into account multiple static and dynamic information about jobs and computing resources and distributes the workload efficiently among the available sites.
+	% Brokerage of the jobs in PanDA implemented in highly sophisticated way taking into account many factors of the real ATLAS workflow and workload and integrating multiple components of the computing model. 	
+	\item PanDA Monitoring system is also developed according to the daily necessities of the real users. Being the core component of the ATLAS production system PanDA confidently copes with the needs of the experiment since the commissioning. 
+	\item Support for running arbitrary user payloads as in conventional batch submission. There is no ATLAS specificity or workload restrictions in the design.
+	
+%	A coherent, homogeneous processing system layered over diverse and heterogeneous processing resources. This helps insulate production operators and analysis users from the complexity of the underlying processing infrastructure. It also maximizes the amount of PanDA systems code that is independent of the underlying middleware and facilities actually used for processing in any given environment.
+	
+%	Use of pilot jobs for acquisition of processing resources. Workload jobs are assigned to successfully activated and validated pilots based on PanDA-managed brokerage criteria. This 'late binding' of workload jobs to processing slots prevents latencies and failure modes in slot acquisition from impacting the jobs, and maximizes the flexibility of job allocation to resources based on the dynamic status of processing facilities and job priorities. The pilot is also a principal 'insulation layer' for PanDA, encapsulating the complex heterogeneous environments and interfaces of the grids and facilities on which PanDA operates.
+	
+%	Coherent and comprehensible system view afforded to users, and to PanDA's own job brokerage system, through a system-wide job database that records comprehensive static and dynamic information on all jobs in the system. 
+	
+%	A comprehensive monitoring system supporting production and analysis operations; user analysis interfaces with personalized user level views; detailed drill-down into job, site and data management information for problem diagnostics; usage and quota accounting; and health and performance monitoring of PanDA subsystems and the computing facilities being utilized.
+	
+	
+%	Support for running arbitrary user code (job scripts), as in conventional batch submission. There is no ATLAS specificity or workload restrictions in the design.
+	
 \end{itemize}
 
 \begin{figure}
@@ -85,9 +103,13 @@ Most significant features provided by PanDA are the following:
 	\label{fig:panda-arch}
 \end{figure}
 
-Since 2012 the BigPanDA project funded by Advanced Scientific Computing Research (ASCR) program ~\cite{DOEASCR} was aimed to extend PanDA beyond the Grid and High-Energy Physics (HEP). The project included many activities beyond ATLAS experiment and provided significant contribution to integration of the supercomputers including Titan~\cite{Titan} operating at the Oak Ridge Leadership Computing Facility (OLCF) into the ATLAS computing model. 
+In 2012 the BigPanDA project funded by Advanced Scientific Computing Research (ASCR) program ~\cite{DOEASCR} was started with aim to introduce HPC computing resources like Titan~\cite{Titan} operating at the Oak Ridge Leadership Computing Facility (OLCF) into the ATLAS computing model.
+Another goal of the project was to offer PanDA features to projects and experiments beyond ATLAS and High-Energy Physics (HEP).
 
-Since 2015 the BigPanDA project evolved into the  BigPanDA++ as the collaboration between Brookhaven National Laboratory (BNL), Oak Ridge National Laboratory (ORNL),  University of Texas Arlington (UTA) and Rutgers University.
+%was aimed to extend PanDA beyond the Grid and High-Energy Physics (HEP). 
+%The project included many activities beyond ATLAS  and provided significant contribution to integration of HPC computing resources like Titan~\cite{Titan} operating at the Oak Ridge Leadership Computing Facility (OLCF) into the ATLAS computing model. 
+
+Since 2015 the BigPanDA project evolved into  BigPanDA++ as a collaboration between Brookhaven National Laboratory (BNL), Oak Ridge National Laboratory (ORNL),  University of Texas Arlington (UTA) and Rutgers University.
 
 
 % ---------------------------------------------------------------------------
@@ -103,13 +125,14 @@ In order to run payloads for non-ATLAS experiments a dedicated instance of MySQL
 PanDA Monitor was also configured to display job information for this instance, as well as AutoPilot~\cite{PanDAPilotSubmission} which submits pilots into Grid environment. 
 As of today, there are 36 computing element endpoints configured with this instance of AutoPilot. 
 This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester~\ref{section_harvester} instances deployed on the front nodes of these resources. 
-Currently this instance server payloads for such experiments and projects like LSST/DESC and LQCD mentioned in sections ~\ref{section_lsst_desc} and ~\ref{section_lqcd}.
+Currently this instance serves payloads for experiments and projects like LSST/DESC and LQCD mentioned in sections ~\ref{section_lsst_desc} and ~\ref{section_lqcd}.
 
 Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM( section~\ref{section_nedm}), Computational Biology (section~\ref{section_biology}), IceCube (section~\ref{section_icecube}) and Molecular Dynamics (section ~\ref{section_moldyn}).
-To isolate the workflows of different groups and experiments, the dedicated queues were defined for both PanDA Server instances. 
-Presumably that on next steps we will provide the security mechanisms that will provide the grants to each queue only for dedicated users. 
-Also, the PanDA provides the tools to customize environment variables, system settings and workflow algorithms for different user groups. 
-Also, this split of the different groups workflows on the level of PanDA queues simplifies jobs monitoring via the web-based PanDA tool. 
+To isolate the workflows of different groups and experiments, dedicated queues were defined for both PanDA Server instances. 
+
+%Presumably that on next steps we will provide the security mechanisms that will provide the grants to each queue only for dedicated users. 
+%Also,  PanDA provides the tools to customize environment variables, system settings and workflow algorithms for different user groups. 
+%Also, this split of the different groups workflows on the level of PanDA queues simplifies jobs monitoring via the web-based PanDA tool. 
 
 
 \begin{figure}
@@ -147,13 +170,15 @@ In collaboration with Center for Bioenergy Innovation at ORNL, the PanDA based w
 
 % Epistasis is the phenomenon where the effect of one gene is dependent on the presence of one or more 'modifier genes', i.e. the genetic background. 
 
-The GBOOST~\cite{GBOOST} application, a GPU-based tool for detecting gene-gene interactions in genome-wide case control studies, was used for initial tests. Input data were located in a set of eight input directories of 152 M each. Every PanDA job was configured to process single input directory in backfill mode on one node and walltime of 30 min. The output data of about 11M per job was located to the corresponding output directory.  
+The GBOOST~\cite{GBOOST} application, a GPU-based tool for detecting gene-gene interactions in genome-wide case control studies, was used for initial tests. Input data were located in a set of eight input directories of 152 MB each. 
+Every PanDA job was configured to process single input directory in backfill mode on one Titan's worker node and walltime of 30 min, the output data volume was around 11 MB per job.
+% The output data of about 11M per job was located to the corresponding output directory.  
 
 In 2019 we are going establish the workflow for larger scale computation runs on Titan and Summit~\cite{Summit}.
 
 \subsection{PanDA for Molecular Dynamics} \label{section_moldyn}
 
-In collaboration with department of Chemistry and Biochemistry at the University of Texas Arlington we implemented test to try out PanDA to support the Molecular Dynamics~\cite{3b6dad414e794d36954333f8f177f47c} study ''Simulating Enzyme Catalysis, Conformational Change, and Ligand Binding/Release''. 
+In collaboration with department of Chemistry and Biochemistry at the University of Texas Arlington we implemented a test to try out PanDA to support the Molecular Dynamics~\cite{3b6dad414e794d36954333f8f177f47c} study ''Simulating Enzyme Catalysis, Conformational Change, and Ligand Binding/Release''. 
 The CHARMM (Chemistry at HARvard Macromolecular Mechanics) application was chosen as a basic payload tool. 
 % CHARMM is a molecular simulation program with broad application to many-particle systems with a comprehensive set of energy functions, a variety of enhanced sampling methods, and support for multi-scale techniques including QM/MM, MM/CG, and a range of implicit solvent models. 
 %CHARMM is a molecular simulation program which primarily targets biological systems including peptides, proteins, prosthetic groups, small molecule ligands, nucleic acids, lipids, and carbohydrates, as they occur in solution, crystals, and membrane environments, it is designed for hybrid MPI/OpenMP/GPU computing.
@@ -166,7 +191,7 @@ These tests were successfully run on Titan using job submission via PanDA server
 
 \subsection{PanDA for IceCube} \label{section_icecube}
 
-Together with experts from the IceCube~\cite{doi:10.1063/1.3480478} experiment we implemented the demonstrator for IceCube job submission to Titan using PanDA system . 
+Together with experts from the IceCube~\cite{doi:10.1063/1.3480478} experiment we implemented the demonstrator for IceCube job submission to Titan using PanDA. 
 IceCube is a particle detector at the South Pole that records the interactions of a nearly massless subatomic particle called the neutrino. 
 %Demonstrator includes the use of NuGen package (a modified version of ANIS~\cite{GAZIZOV2005203} that works with IceCube software) -- GPU application for atmospheric neutrinos are simulations packed in singularity container and remote stage-in/-out the data from GridFTP~\cite{GlobusGridFTP} storage with GSI authentication. 
 %Demonstrator includes the use of NuGen package (a modified version of ANIS~\cite{GAZIZOV2005203} that works with IceCube software) -- GPU application for atmospheric neutrinos are simulations packed in singularity container and remote stage-in/-out the data from GridFTP~\cite{GridFTP_Proc} storage. 
@@ -193,12 +218,12 @@ Complete set of the tools provided within this project refers as PanDA portal an
 A goal of Large Synoptic Survey Telescope (LSST) project is to conduct a 10-year survey of the sky that is expected to deliver 200 petabytes of data after it begins full science operations in 2022. 
 The project will address some of the most pressing questions about the structure and evolution of the universe and the objects in it. 
 It will require a large amount of simulations, which model the atmosphere, optics and camera to understand the collected data. 
-The LSST Dark Energy Science Collaboration (LSST/DESC)~\cite{lsst-desc} will prepare and perform a variety of cosmological analyses with the data received with LSST. 
-This will allow provide the community with state of the art analysis tools which, in their turn, will help to expand the knowledge about dark energy.
+The LSST Dark Energy Science Collaboration (LSST/DESC)~\cite{lsst-desc} will prepare and perform a variety of cosmological analyses with the data received from LSST. 
+This will allow to provide the community with state of the art analysis tools which, in turn, will help to expand the knowledge about dark energy.
 
 For running LSST/DESC simulations with the PanDA WMS we have established a distributed testbed infrastructure that employs the resources of several sites on GridPP~\cite{GridPP_Collaboration_2005} and Open Science Grid~\cite{Pordes_2007} as well as the Titan supercomputer. In order to submit jobs to these sites we have used a PanDA server instance deployed on the Amazon AWS Cloud. 
 Current LSST/PanDA computing environment includes 2 sites in Open Science Grid (US), 8 sites in GridPP (UK) and LAPP Grid Site (France). 
-Currently there are 36 Grid endpoints that support LSST/DESC payloads. During our last tests we managed reach around 3000 simultaneously running LSST/DESC jobs via PanDA infrastructure without any dedicated resources. 
+Currently there are 36 Grid endpoints that support LSST/DESC payloads. During our last tests we've reached the level of 3000 simultaneously running LSST/DESC jobs via PanDA infrastructure without any dedicated resources. 
 Job duration was 4-24 hours with average duration around 7.5 hours.
 LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an edge service on NERSC Cori~\cite{NERSC_Cori}. ''2-point Statistics Analysis'' workflow (Figure~\ref{fig:lsst_desc_2pt_stats}) contains several steps where output from completed step is passed to the input of a next step. There were also intermediate steps that performed data preparation which had to be executed locally on a front node, main steps for the analysis were executed on worker nodes of Cori in Shifter containers prepared by BNL Astro group.
 
@@ -246,11 +271,12 @@ In terms of preparation to future LQCD campaigns an instance of Harvester was su
 
 \subsection{PanDA for nEDM} \label{section_nedm}
 
-Precision measurements of the properties of the neutron present an opportunity to search for violations of fundamental symmetries and to make critical tests of the validity of the Standard Model (SM) of electroweak (EW) interactions. 
+% Precision measurements of the properties of the neutron present an opportunity to search for violations of fundamental symmetries and to make critical tests of the validity of the Standard Model of electroweak interactions. 
+Precision measurements of the properties of neutron help to study the violations of fundamental symmetries in the Standard Model of electroweak interactions. 
+This research allow to explain the dominance of matter over antimatter in the Universe. 
 % These experiments have been pursued with great energy and interest since the discovery of neutron in 1932.  
 % The goal of the nEDM~\cite{Lamoreaux_2009} experiment at the Fundamental Neutron Physics Beamline at the Spallation Neutron Source (Oak Ridge National Laboratory) is to further improve the precision of this measurement by another factor of 100.
 The goal of the nEDM~\cite{Lamoreaux_2009} experiment at ORNL is to further improve the precision of this measurement by another factor of 100.
-
 
 Current nEDM payloads run detector simulations using GEANT4~\cite{AGOSTINELLI2003250} with walltime around 20 minutes. We have successfully tested nEDM payloads executed through Harvester instance deployed on a login node of Titan supercomputer. No specific data movement was required from nEDM; input and output data remain on Titan’s Lustre filesystem. nEDM team is planning to run their data challenges in 2019 through OLCF PanDA Server instance.
 
