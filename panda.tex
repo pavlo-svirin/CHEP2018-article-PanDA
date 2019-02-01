@@ -31,7 +31,7 @@
 \firstname{Andrei} \lastname{Nomerotski}\inst{1} \and
 \firstname{Danila} \lastname{Oleynik}\inst{2} \and
 \firstname{Sergey} \lastname{Panitkin}\inst{1} \and
-\firstname{Heyun} \lastname{Park}\inst{1,5} \and
+\firstname{Hye Yun} \lastname{Park}\inst{1,5} \and
 \firstname{Erin} \lastname{Sheldon}\inst{1} \and
 \firstname{Anze} \lastname{Slosar}\inst{1} \and
 \firstname{Jack} \lastname{Wells }\inst{6} \and
@@ -66,20 +66,22 @@ In 2012 BigPanDA project project was started with aim to introduce new types of 
 
 Production and Distributed Analysis Workload Management System (PanDA WMS) ~\cite{PanDA} is the system initially developed for ATLAS experiment~\cite{ATLAS_Collaboration_2008} and was designed as high-level intellectual layer on WLCG~\cite{doi:10.1146/annurev-nucl-102010-130059} grid-infrastructure. 
 %WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of the services which can be thematically grouped into 5 service groups: Access Services, Security Services, Information and Monitoring Services, Data Services and Job Management Services (Figure~\ref{fig:panda-arch}). 
-WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of services. 
+% WLCG built on the gLite middleware~\cite{gLite} and released in 2005 already provided the wide range of services. 
 
-At the same time parallely developed PanDA system  allowed the efficient use of gLite infrastructure and provided multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
+%At the same time parallely developed PanDA system  allowed the efficient use of gLite infrastructure and provided multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
+PanDA WMS  allows the efficient use of WLCG infrastructure and provided multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
 % for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
 % and provided multiple benefits for running ATLAS payloads (Figure~\ref{fig:panda-arch}).
 The most significant features provided by PanDA are the following: 
 
 \begin{itemize}
 	\item A common layer over heterogeneous computing resources which hides the complexity of different computing resources and middlewares from users.
-	\item The implementation of the late-binding principle for the job payload with CPU slots using the Pilot component. This approach allows to prevent  latencies and failure modes in slot acquisition from impacting the jobs.
+	\item An implementation of the late-binding principle for the job payload with CPU slots using the Pilot component. This approach allows to prevent  latencies and failure modes in slot acquisition from impacting the jobs.
 	%Now the standard Grid-job became the carrier of the Pilot-job which in it’s order became responsible of the handling  payloads. 
 	\item PanDA's brokerage system takes into account multiple static and dynamic information about jobs and computing resources and distributes the workload efficiently among the available sites.
 	% Brokerage of the jobs in PanDA implemented in highly sophisticated way taking into account many factors of the real ATLAS workflow and workload and integrating multiple components of the computing model. 	
-	\item PanDA Monitoring system is also developed according to the daily necessities of the real users. Being the core component of the ATLAS production system PanDA confidently copes with the needs of the experiment since the commissioning. 
+	% \item PanDA Monitoring system is also developed according to the daily necessities of the real users. Being the core component of the ATLAS production system PanDA confidently copes with the needs of the experiment since the commissioning. 
+	\item A comprehensive monitoring system offering detailed drill-down into job, site and data management information for problem diagnostics.
 	\item Support for running arbitrary user payloads as in conventional batch submission. There is no ATLAS specificity or workload restrictions in the design.
 	
 %	A coherent, homogeneous processing system layered over diverse and heterogeneous processing resources. This helps insulate production operators and analysis users from the complexity of the underlying processing infrastructure. It also maximizes the amount of PanDA systems code that is independent of the underlying middleware and facilities actually used for processing in any given environment.
@@ -99,7 +101,7 @@ The most significant features provided by PanDA are the following:
 	\centering
 	\includegraphics[width=0.90\textwidth]{figures/PanDA_architecture.png}
 %	\caption{PanDA architecture.}
-    \caption{The components of ATLAS distributed computing software: production management (), metadata and distributed data management (), workload management()}	
+    \caption{The components of ATLAS distributed computing software: production management (amber elements), metadata and distributed data management (blue elements), workload management (red elements)}	
 	\label{fig:panda-arch}
 \end{figure}
 
@@ -113,7 +115,8 @@ Since 2015 the BigPanDA project evolved into  BigPanDA++ as a collaboration betw
 
 
 % ---------------------------------------------------------------------------
-\section{PanDA outside ATLAS and CERN: instances at OLCF and EC2 and user environment}
+%\section{PanDA outside ATLAS and CERN: instances at OLCF and EC2 and user environment}
+\section{PanDA outside ATLAS and CERN: instances at OLCF and EC2, edge services  and user environment}
 
 \subsection{PanDA Server instances in EC2 Amazon Cloud and OLCF}
 
@@ -124,7 +127,7 @@ We have ported database description to MySQL excluding ATLAS-specific stored pro
 In order to run payloads for non-ATLAS experiments a dedicated instance of MySQL-based PanDA Server has been deployed in Amazon EC2.  
 PanDA Monitor was also configured to display job information for this instance, as well as AutoPilot~\cite{PanDAPilotSubmission} which submits pilots into Grid environment. 
 As of today, there are 36 computing element endpoints configured with this instance of AutoPilot. 
-This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester~\ref{section_harvester} instances deployed on the front nodes of these resources. 
+This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester (section ~\ref{section_harvester}) instances deployed on the front nodes of these resources. 
 Currently this instance serves payloads for experiments and projects like LSST/DESC and LQCD mentioned in sections ~\ref{section_lsst_desc} and ~\ref{section_lqcd}.
 
 Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM( section~\ref{section_nedm}), Computational Biology (section~\ref{section_biology}), IceCube (section~\ref{section_icecube}) and Molecular Dynamics (section ~\ref{section_moldyn}).
@@ -222,8 +225,7 @@ The LSST Dark Energy Science Collaboration (LSST/DESC)~\cite{lsst-desc} will pre
 This will allow to provide the community with state of the art analysis tools which, in turn, will help to expand the knowledge about dark energy.
 
 For running LSST/DESC simulations with the PanDA WMS we have established a distributed testbed infrastructure that employs the resources of several sites on GridPP~\cite{GridPP_Collaboration_2005} and Open Science Grid~\cite{Pordes_2007} as well as the Titan supercomputer. In order to submit jobs to these sites we have used a PanDA server instance deployed on the Amazon AWS Cloud. 
-Current LSST/PanDA computing environment includes 2 sites in Open Science Grid (US), 8 sites in GridPP (UK) and LAPP Grid Site (France). 
-Currently there are 36 Grid endpoints that support LSST/DESC payloads. During our last tests we've reached the level of 3000 simultaneously running LSST/DESC jobs via PanDA infrastructure without any dedicated resources. 
+Current LSST/PanDA computing environment includes 2 sites in Open Science Grid (US), 8 sites in GridPP (UK) and LAPP Grid Site (France), in total, there are 36 Grid endpoints that support LSST/DESC payloads. During our last tests we've reached the level of 3000 simultaneously running LSST/DESC jobs via PanDA infrastructure without any dedicated resources. 
 Job duration was 4-24 hours with average duration around 7.5 hours.
 LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an edge service on NERSC Cori~\cite{NERSC_Cori}. ''2-point Statistics Analysis'' workflow (Figure~\ref{fig:lsst_desc_2pt_stats}) contains several steps where output from completed step is passed to the input of a next step. There were also intermediate steps that performed data preparation which had to be executed locally on a front node, main steps for the analysis were executed on worker nodes of Cori in Shifter containers prepared by BNL Astro group.
 
@@ -273,7 +275,7 @@ In terms of preparation to future LQCD campaigns an instance of Harvester was su
 
 % Precision measurements of the properties of the neutron present an opportunity to search for violations of fundamental symmetries and to make critical tests of the validity of the Standard Model of electroweak interactions. 
 Precision measurements of the properties of neutron help to study the violations of fundamental symmetries in the Standard Model of electroweak interactions. 
-This research allow to explain the dominance of matter over antimatter in the Universe. 
+This research allows to explain the dominance of matter over antimatter in the Universe. 
 % These experiments have been pursued with great energy and interest since the discovery of neutron in 1932.  
 % The goal of the nEDM~\cite{Lamoreaux_2009} experiment at the Fundamental Neutron Physics Beamline at the Spallation Neutron Source (Oak Ridge National Laboratory) is to further improve the precision of this measurement by another factor of 100.
 The goal of the nEDM~\cite{Lamoreaux_2009} experiment at ORNL is to further improve the precision of this measurement by another factor of 100.
