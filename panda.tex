@@ -6,6 +6,9 @@
 
 \usepackage[justification=centering]{caption}
 
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{flafter}
+
 \begin{document}
 
 \title{BigPanDA: PanDA Workload Management System and its Applications beyond ATLAS}
@@ -98,8 +101,12 @@ The most significant features provided by PanDA are the following:
 \begin{figure}
 	\centering
 	\includegraphics[width=0.90\textwidth]{figures/PanDA_architecture.png}
-%	\caption{PanDA architecture.}
+
+%	\caption{PanDA architecture.}    
+    \begin{flushleft}
     \caption{The components of ATLAS distributed computing software: production management (amber elements), metadata and distributed data management (blue elements), workload management (red elements)}	
+    \end{flushleft}
+%    \end{flushleft}
 	\label{fig:panda-arch}
 \end{figure}
 
@@ -139,8 +146,11 @@ To isolate the workflows of different groups and experiments, dedicated queues w
 \begin{figure}
   \centering
   \includegraphics[width=0.90\textwidth]{figures/Panda_at_OLCF.png}
+%  \end{flushleft}
 %  \caption{Harvester architecture.}
+    \begin{flushleft}
   \caption{Harvester deployment on Titan and its interaction with external PanDA services and Titan's batch system}
+\end{flushleft}
   \label{fig:panda-OLCF}
 \end{figure}
 
@@ -232,7 +242,9 @@ LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an e
 \begin{figure}
   \centering
   \includegraphics[width=0.30\textwidth]{figures/LSST_2point_statistics.png}
+  \begin{flushleft}
   \caption{2-point Statistics Analysis workflow}
+  \end{flushleft}
   \label{fig:lsst_desc_2pt_stats}
 \end{figure}
 
@@ -264,7 +276,7 @@ In terms of preparation to future LQCD campaigns an instance of Harvester was su
 \begin{figure}
 	\centering
 	\includegraphics[width=0.60\textwidth]{figures/LQCD_future_environment.png}
-	\caption{2-point Statistics Analysis workflow}
+	\caption{Future computing environment for Lattice QCD}
 	\label{fig:lqcd_env}
 \end{figure}
 
