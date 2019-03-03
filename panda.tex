@@ -51,9 +51,7 @@ Oak Ridge National Laboratory (ORNL), Oak Ridge, TN USA
 }
 
 \abstract{Modern experiments collect peta-scale volumes of data and utilize vast, geographically distributed computing infrastructure that serves thousands of scientists around the world. Requirements for rapid, near real-time data processing, fast analysis cycles and need to run massive detector simulations to support data analysis pose special premium on efficient use of available computational resources.
-
 A sophisticated Workload Management System (WMS)  is needed to coordinate the distribution and processing of data and jobs in such environment. The ATLAS experiment at CERN uses PanDA (Production and Data Analysis) Workload Management System for managing the workflow for all data processing on over 150 data centers. While PanDA currently uses more than 250,000 cores with a peak performance of 0.3 petaFLOPS, it runs around 2 million jobs per day on hundreds of Grid sites and serving thousands of ATLAS users. In 2017 about 1.5 exabytes of data were processed with PanDA.
-
 In 2012 BigPanDA project project was started with aim to introduce new types of computing resources into ATLAS computing infrastructure, but also to offering PanDA features to different data-intensive applications for projects and experiments outside of ATLAS and High-Energy and Nuclear Physics. In this article we will present accomplishments and discuss possible directions for future work.}
 
 \maketitle
@@ -130,7 +128,7 @@ As of today, there are 36 computing element endpoints configured with this insta
 This instance also serves HPC resources at BNL, NERSC and Jefferson Lab (JLab) via Harvester (section ~\ref{section_harvester}) instances deployed on the front nodes of these resources. 
 Currently this instance serves payloads for experiments and projects like LSST/DESC and LQCD mentioned in sections ~\ref{section_lsst_desc} and ~\ref{section_lqcd}.
 
-Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM( section~\ref{section_nedm}), Computational Biology (section~\ref{section_biology}), IceCube (section~\ref{section_icecube}) and Molecular Dynamics (section ~\ref{section_moldyn}).
+Another  PanDA Server instance to serve experiments and projects at OLCF (Figure~\ref{fig:panda-OLCF}) was deployed as a container-based application in OpenShift cluster management system at OLCF. This approach can be reused for fast deployments in the future. Currently this instance serves experiments and projects like nEDM (section~\ref{section_nedm}), Computational Biology (section~\ref{section_biology}), IceCube (section~\ref{section_icecube}) and Molecular Dynamics (section ~\ref{section_moldyn}).
 To isolate the workflows of different groups and experiments, dedicated queues were defined for both PanDA Server instances. 
 
 %Presumably that on next steps we will provide the security mechanisms that will provide the grants to each queue only for dedicated users. 
