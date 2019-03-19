@@ -9,6 +9,13 @@
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{flafter}
 
+%\usepackage[flushleft]{caption}
+\captionsetup{justification=justified,
+	singlelinecheck=true
+}
+
+\def\correspondingauthor{\footnote{Corresponding author: \url{pavlo.svirin@cern.ch}}}
+
 \begin{document}
 
 \title{BigPanDA: PanDA Workload Management System and its Applications beyond ATLAS}
@@ -22,7 +29,7 @@
 
 \author{
 %P. Svirin1, K. De2, A. Forti3, A. Klimentov1, R. Larsen1, P. Love4, T. Maeno1, R. Mashinistov1, S. Mukherjee1, A. Nomerotski1, D. Oleynik2, S. Panitkin1, H. Park1,5, E. Sheldon1, A. Slosar1, J. Wells6 and T. Wenaus1
-\firstname{Pavlo} \lastname{Svirin}\inst{1} \and
+\firstname{Pavlo} \lastname{Svirin}\inst{1} \correspondingauthor \and
 \firstname{Kaushik} \lastname{De}\inst{2} \and
 \firstname{Alessandra} \lastname{Forti}\inst{3} \and
 \firstname{Alexei} \lastname{Klimentov}\inst{1} \and
@@ -101,13 +108,12 @@ The most significant features provided by PanDA are the following:
 \begin{figure}
 	\centering
 	\includegraphics[width=0.90\textwidth]{figures/PanDA_architecture.png}
-
 %	\caption{PanDA architecture.}    
-    \begin{flushleft}
-    \caption{The components of ATLAS distributed computing software: production management (amber elements), metadata and distributed data management (blue elements), workload management (red elements)}	
-    \end{flushleft}
-%    \end{flushleft}
-	\label{fig:panda-arch}
+    %\begin{flushleft}
+    \flushleft \caption{The components of ATLAS distributed computing software: production management (amber elements), metadata and distributed data management (blue elements), workload management (red elements)}	
+    \label{fig:panda-arch}
+    %\end{flushleft}
+%    \end{flushleft}	
 \end{figure}
 
 In 2012 the BigPanDA project funded by Advanced Scientific Computing Research (ASCR) program ~\cite{DOEASCR} was started with aim to introduce HPC computing resources like Titan~\cite{Titan} operating at the Oak Ridge Leadership Computing Facility (OLCF) into the ATLAS computing model.
@@ -148,10 +154,10 @@ To isolate the workflows of different groups and experiments, dedicated queues w
   \includegraphics[width=0.90\textwidth]{figures/Panda_at_OLCF.png}
 %  \end{flushleft}
 %  \caption{Harvester architecture.}
-    \begin{flushleft}
-  \caption{Harvester deployment on Titan and its interaction with external PanDA services and Titan's batch system}
-\end{flushleft}
+    %\begin{flushleft}
+  \flushleft \caption{Harvester deployment on Titan and its interaction with external PanDA services and Titan's batch system}
   \label{fig:panda-OLCF}
+%\end{flushleft}  
 \end{figure}
 
 \subsection{From Pilot to Harvester} \label{section_harvester}
@@ -244,8 +250,8 @@ LSST/DESC workflows defined in YAML were tested with PanDA and Harvester as an e
   \includegraphics[width=0.30\textwidth]{figures/LSST_2point_statistics.png}
   \begin{flushleft}
   \caption{2-point Statistics Analysis workflow}
-  \end{flushleft}
   \label{fig:lsst_desc_2pt_stats}
+  \end{flushleft}  
 \end{figure}
 
 
